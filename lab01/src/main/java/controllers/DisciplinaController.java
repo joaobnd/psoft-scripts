@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ public class DisciplinaController {
 	
 	@GetMapping("disciplinas")
 	public ResponseEntity<List<Disciplina>> ListDisciplinas() {
-		return new ResponseEntity<List<Disciplina>>(this.disciplinaService.ListDisciplinas(), HttpStatus.OK);
+		return new ResponseEntity<List<Disciplina>>(this.disciplinaService.listDisciplinas(), HttpStatus.OK);
 	}
 	
 	@RequestMapping("disciplinas/{id}")
@@ -65,6 +66,21 @@ public class DisciplinaController {
 			return new ResponseEntity<Disciplina>(HttpStatus.NOT_FOUND);
 		else
 			return new ResponseEntity<Disciplina>(resp, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("disciplinas/{id}")
+	public ResponseEntity<Disciplina> removeDisciplina(@PathVariable Integer id) {
+		Disciplina resp = this.disciplinaService.removeDisciplina(id);
+		
+		if(resp == null)
+			return new ResponseEntity<Disciplina>(HttpStatus.NOT_FOUND);
+		else
+			return new ResponseEntity<Disciplina>(resp, HttpStatus.OK);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<Disciplina>> rankingDisciplinas() {
+		return new ResponseEntity<List<Disciplina>>(this.disciplinaService.rankingDisciplinas(), HttpStatus.OK);
 	}
 	
 	

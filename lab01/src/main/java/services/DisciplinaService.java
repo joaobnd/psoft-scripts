@@ -1,7 +1,7 @@
 package services;
-
-
+import java.lang.Comparable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,7 @@ public class DisciplinaService {
 		return disciplina;
 	}
 	
-	public List<Disciplina> ListDisciplinas() {
+	public List<Disciplina> listDisciplinas() {
 		return new ArrayList<>(this.disciplinas.values());
 	}
 	
@@ -49,6 +49,25 @@ public class DisciplinaService {
 		
 		return disc;
 	}
+	
+	public Disciplina removeDisciplina(Integer id) {
+		
+		Disciplina disc = this.disciplinas.get(id);
+		
+		if(disc != null) {
+			disciplinas.remove(id);
+		}
+		
+		return disc;
+	}
+	
+	
+	public List<Disciplina> rankingDisciplinas() {
+		ArrayList<Disciplina> resp = new ArrayList<>(this.disciplinas.values());
+		Collections.sort(resp, Collections.reverseOrder());
+		return resp;
+	}
+		
 
 	
 }
