@@ -3,7 +3,6 @@ package com.lab02.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
 public class Disciplina {
 	
 	@Id
@@ -13,8 +12,12 @@ public class Disciplina {
 	private String comentarios;
 	private Integer likes;
 	
-	public Disciplina() {
-		
+	public Disciplina(Long id, String nome, Double nota, String comentarios) {
+		this.id = id;
+		this.nome = nome;
+		this.nota = nota;
+		this.comentarios = comentarios;
+		this.likes = 0;
 	}
 	
 	public Long getId() {
@@ -44,8 +47,8 @@ public class Disciplina {
 	public Integer getLikes() {
 		return likes;
 	}
-	public void setLikes(Integer likes) {
-		this.likes = likes;
+	public void addLikes() {
+		this.likes++;
 	}
 	
 	
